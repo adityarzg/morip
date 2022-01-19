@@ -17,7 +17,6 @@ class Home_model extends CI_Model
         `perkara_pihak1`.`alamat` AS `Alamat Pihak 1`,
         `perkara`.`pengacara_pihak1` AS `Kuasa Hukum 1`,
         
-        
         `jenis_pihak2`.`nama` AS `Jenis Pihak 2`,
         `perkara_pihak2`.`nama` AS `Pihak 2`,
         `perkara_pihak2`.`alamat` AS `Alamat Pihak 2`,
@@ -31,8 +30,40 @@ class Home_model extends CI_Model
         `perkara`.`pengacara_pihak3` AS `Kuasa Hukum 3`,
 
         `perkara`.`posita` AS `Posita`,
-        `perkara`.`petitum` AS `Petitum`
+        `perkara`.`petitum` AS `Petitum`,
         
+        `perkara_dismissal`.`hasil` AS `hasil`,
+        `perkara_dismissal`.`tanggal_penetapan` AS `Tanggal Penetapan Dismissal`,
+        `perkara_dismissal`.`amar` AS `Amar Penetapan Dismissal`,
+        `perkara_dismissal`.`pemberitahuan_penggugat` AS `Tanggal Pemberitahuan Penetapan Dismissal`,
+
+        `perkara_penetapan`.`penetapan_majelis_hakim` AS `Tanggal Penetapan Majelis Hakim`,
+        `perkara_penetapan`.`penetapan_panitera_pengganti` AS `Tanggal Penetapan Panitera Pengganti`,
+        `perkara_penetapan`.`majelis_hakim_text` AS `Majelis Hakim`,
+        `perkara_penetapan`.`panitera_pengganti_text` AS `Panitera Pengganti`,
+        `perkara_persiapan`.`tanggal_penetapan_persiapan` AS `Tanggal Penetepan Hari Pemeriksaan Persiapan`,
+        `perkara_persiapan_proses`.`tanggal_musyawarah` AS `Tanggal Pemeriksaan Persiapan`,
+        `perkara_penetapan`.`penetapan_hari_sidang` AS `Tanggal Penetapan Hari Sidang`,
+        `perkara_penetapan`.`sidang_pertama` AS `Tanggal Sidang`,
+        
+        `perkara_putusan`.`tanggal_putusan` AS `Tanggal Putusan`,
+        `perkara_putusan`.`amar_putusan` AS `Amar Putusan`,
+        `perkara_putusan`.`pemberitahuan_putusan` AS `Tanggal Pemberitahuan Putusan`,
+
+        `perkara_banding`.`permohonan_banding` AS `Tanggal Akta Permohonan Banding`,
+        `perkara_banding`.`nomor_perkara_pn` AS `Nomor Perkara Tingkat Pertama`,
+        `perkara_banding`.`putusan_banding` AS `Tanggal Putusan Banding`,
+
+        `perkara_kasasi`.`permohonan_kasasi` AS `Tanggal Akta Permohonan Kasasi`,
+        `perkara_kasasi`.`putusan_kasasi` AS `Tanggal Putusan Kasasi`,
+
+        `perkara_pk`.`permohonan_pk` AS `Tanggal Akta Permohonan Peninjauan Kembali`,
+        `perkara_pk`.`putusan_pk` AS `Tanggal Putusan Peninjauan Kembali`,
+
+        `perkara_eksekusi`.`permohonan_eksekusi` AS `Tanggal Permohonan Eksekusi`,
+        `perkara_eksekusi`.`panggilan_parapihak` AS `Tanggal Panggilan Para Pihak`,
+
+        `perkara`.`tahapan_terakhir_text` AS `Tahapan Sidang`
 
         FROM `perkara`
         
@@ -50,6 +81,18 @@ class Home_model extends CI_Model
         LEFT JOIN `jenis_pihak` ON `perkara_pihak1`.`jenis_pihak_id` = `jenis_pihak`.`id` && `jenis_pihak`.`jenis_pengadilan` = 1
         LEFT JOIN `jenis_pihak` AS `jenis_pihak2` ON `perkara_pihak2`.`jenis_pihak_id` = `jenis_pihak2`.`id` && `jenis_pihak2`.`jenis_pengadilan` = 1
         LEFT JOIN `jenis_pihak` AS `jenis_pihak3` ON `perkara_pihak3`.`jenis_pihak_id` = `jenis_pihak3`.`id` && `jenis_pihak3`.`jenis_pengadilan` = 1
+
+        LEFT JOIN `perkara_dismissal` ON `perkara`.`perkara_id` = `perkara_dismissal`.`perkara_id`
+        LEFT JOIN `perkara_penetapan` ON `perkara`.`perkara_id` = `perkara_penetapan`.`perkara_id`
+        LEFT JOIN `perkara_persiapan` ON `perkara`.`perkara_id` = `perkara_persiapan`.`perkara_id`
+        LEFT JOIN `perkara_persiapan_proses` ON `perkara`.`perkara_id` = `perkara_persiapan_proses`.`perkara_id` && `perkara_persiapan_proses`.`urutan` = 1
+        LEFT JOIN `perkara_putusan` ON `perkara`.`perkara_id` = `perkara_putusan`.`perkara_id`
+
+        LEFT JOIN `perkara_banding` ON `perkara`.`perkara_id` = `perkara_banding`.`perkara_id`
+        LEFT JOIN `perkara_kasasi` ON `perkara`.`perkara_id` = `perkara_kasasi`.`perkara_id`
+        LEFT JOIN `perkara_pk` ON `perkara`.`perkara_id` = `perkara_pk`.`perkara_id`
+        LEFT JOIN `perkara_eksekusi` ON `perkara`.`perkara_id` = `perkara_eksekusi`.`perkara_id`
+
 
         GROUP BY `perkara`.`nomor_perkara`
         ORDER BY `perkara`.`perkara_id` DESC";
