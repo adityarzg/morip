@@ -62,6 +62,7 @@ class Home_model extends CI_Model
 
         `perkara_eksekusi`.`permohonan_eksekusi` AS `Tanggal Permohonan Eksekusi`,
         `perkara_eksekusi`.`panggilan_parapihak` AS `Tanggal Panggilan Para Pihak`,
+        `perkara_eksekusi`.`penetapan_ketua` AS `Tanggal Penetapan Eksekusi`,
 
         `perkara`.`tahapan_terakhir_text` AS `Tahapan Sidang`
 
@@ -96,8 +97,8 @@ class Home_model extends CI_Model
 
         GROUP BY `perkara`.`nomor_perkara`
         ORDER BY `perkara`.`perkara_id` DESC";
-        $cek = $this->db->query($q)->result_array();
-        return var_dump($cek);
+        return $this->db->query($q)->result_array();
+        //return var_dump($cek);
     }
 }
 

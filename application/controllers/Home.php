@@ -12,5 +12,7 @@ class Home extends CI_Controller
     public function index()
     {
         $data['perkara'] = $this->Home_model->getDataPerkara();
+        $data['title'] = 'Monitoring Register Induk Perkara';
+        $this->load->view('home', $data);
     }
 }
