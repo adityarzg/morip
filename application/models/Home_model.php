@@ -37,6 +37,7 @@ class Home_model extends CI_Model
         `perkara_dismissal`.`amar` AS `Amar Penetapan Dismissal`,
         `perkara_dismissal`.`pemberitahuan_penggugat` AS `Tanggal Pemberitahuan Penetapan Dismissal`,
 
+        `perkara_penetapan`.`jenis_acara` AS `Jenis Acara`,
         `perkara_penetapan`.`penetapan_majelis_hakim` AS `Tanggal Penetapan Majelis Hakim`,
         `perkara_penetapan`.`penetapan_panitera_pengganti` AS `Tanggal Penetapan Panitera Pengganti`,
         `perkara_penetapan`.`majelis_hakim_text` AS `Majelis Hakim`,
@@ -51,10 +52,10 @@ class Home_model extends CI_Model
         `perkara_putusan`.`pemberitahuan_putusan` AS `Tanggal Pemberitahuan Putusan`,
 
         `perkara_banding`.`permohonan_banding` AS `Tanggal Akta Permohonan Banding`,
-        `perkara_banding`.`nomor_perkara_pn` AS `Nomor Perkara Tingkat Pertama`,
         `perkara_banding`.`putusan_banding` AS `Tanggal Putusan Banding`,
 
         `perkara_kasasi`.`permohonan_kasasi` AS `Tanggal Akta Permohonan Kasasi`,
+        `perkara_banding`.`nomor_perkara_banding` AS `Nomor Perkara Banding`,
         `perkara_kasasi`.`putusan_kasasi` AS `Tanggal Putusan Kasasi`,
 
         `perkara_pk`.`permohonan_pk` AS `Tanggal Akta Permohonan Peninjauan Kembali`,
